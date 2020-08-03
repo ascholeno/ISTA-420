@@ -1,0 +1,129 @@
+.headers on
+
+--Name: Anthony Scholeno
+--File: Ex 03
+--Date: July 19th 2020
+
+--1. Using SQLite and the Northwind database, create a line item report that contains a line for each
+--product in the order with the following columns: the order id, the product id, the unit price, the
+--quantity sold, the line item price, and the percent of that line item constitutes of the total amount of
+--the order.
+select orderid, productid, unitprice, (unitprice * quantity) as line_total, ((unitprice*quantity)/(sum(unitprice*quantity)))*100 as PctOfTotalOrder from order_details group by orderid limit 25;
+OrderID|ProductID|UnitPrice|line_total|PctOfTotalOrder
+10248|11|14.0|168.0|38.1818181818182
+10249|14|18.6|167.4|8.98357840506601
+10250|41|7.7|77.0|4.24710424710425
+10251|22|16.8|100.8|15.0268336314848
+10252|20|64.8|2592.0|69.4906166219839
+10253|31|10.0|200.0|13.8427464008859
+10254|24|3.6|54.0|8.63723608445297
+10255|2|15.2|304.0|12.2063842601887
+10256|53|26.2|393.0|75.8980301274623
+10257|27|35.1|877.5|78.3552102866327
+10258|2|15.2|760.0|37.6498563360745
+10259|21|8.0|80.0|79.3650793650794
+10260|41|7.7|123.2|7.05532012369717
+10261|21|8.0|160.0|35.7142857142857
+10262|5|17.0|204.0|32.6504481434059
+10263|16|13.9|834.0|33.8364167478092
+10264|2|15.2|532.0|73.4299516908213
+10265|17|31.2|936.0|79.5918367346939
+10266|12|30.4|364.8|100.0
+10267|40|14.7|735.0|18.2336889109402
+10268|29|99.0|990.0|89.901925172539
+10269|33|2.0|120.0|17.7514792899408
+10270|36|15.2|456.0|33.1395348837209
+10271|33|2.0|48.0|100.0
+10272|20|64.8|388.8|26.7032967032967
+
+--2. I want to know the unique (distinct) cities, regions, and postal codes: (a) where we have both customers
+--and employees,
+select distinct e.city as employees, c.city as customers from employees e join customers c where c.city = e.city;
+employees|customers
+Seattle|Seattle
+Kirkland|Kirkland
+London|London
+-- (b) where we have customers but no employees AND both customers ad employees,
+--and
+select distinct c.city as customers from customers c join employees e where c.city != e.city;
+customers
+City
+Berlin
+México D.F.
+London
+Luleå
+Mannheim
+Strasbourg
+Madrid
+Marseille
+Tsawassen
+Buenos Aires
+Bern
+Sao Paulo
+Aachen
+Nantes
+Graz
+Lille
+Bräcke
+München
+Torino
+Lisboa
+Barcelona
+Sevilla
+Campinas
+Eugene
+Caracas
+Rio de Janeiro
+San Cristóbal
+Elgin
+Cork
+Cowes
+Brandenburg
+Versailles
+Toulouse
+Vancouver
+Walla Walla
+Frankfurt a.M.
+San Francisco
+Barquisimeto
+I. de Margarita
+Portland
+Bergamo
+Bruxelles
+Montréal
+Leipzig
+Anchorage
+Köln
+Paris
+Salzburg
+Cunewalde
+Albuquerque
+Reggio Emilia
+Genève
+Stavern
+Boise
+Kobenhavn
+Lander
+Charleroi
+Butte
+Münster
+Kirkland
+Århus
+Lyon
+Reims
+Stuttgart
+Oulu
+Resende
+Seattle
+Helsinki
+Warszawa
+--(c) where we have employees but no customers AND both customers and employees. Write three
+--queries, using inner and outer joins. Report the results of the queries. There is no need for any further
+--reporting.
+select distinct e.city as customers from customers c join employees e where c.city != e.city;
+customers
+Seattle
+Tacoma
+Kirkland
+Redmond
+London

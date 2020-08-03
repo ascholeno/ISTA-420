@@ -1,0 +1,33 @@
+azure fund
+azure developer
+azure 203 
+azure 900
+cbt nuggets
+hire for heroes resume help
+linkdin learning
+
+
+
+
+select first name from list of first and last
+SELECT FIRST NAME select substr(contactname, 1, instr(contactname, " ")) from customers;
+SELECT LAST NAME select substr(contactname, " ")+1);
+
+SWITCH FIRST NAME AND LAST NAME select subst(contactname, instr(contactname, " ")+1) || ", " || substr(contactname, 1 , instr(contactname, " ")) from customers;
+
+PLACE DIFFERENT ROWS ON DIFFERENT LINES
+select city || '
+...> ' || region || '
+...> ' || postalcode from suppliers;
+
+sqlite> select city || '
+   ...> ' || region || '
+   ...> ' || postalcode || '
+   ...> ' from employees;
+
+Scalar valued operator -- Expects an integer examples  =, <>, <, >, >=
+list valued operator -- expects a list example in
+
+[Tab] - select "one word" || "	" || "last word";
+
+average function -  select avg(unitprice) from products;
